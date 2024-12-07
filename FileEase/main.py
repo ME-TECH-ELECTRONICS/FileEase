@@ -58,4 +58,4 @@ class FileEase:
 
     def ppt_to_pdf(self, input_file: str, output_folder: str) -> bool:
         return self.__convert_to_pdf(input_file, output_folder)
- 
+  
