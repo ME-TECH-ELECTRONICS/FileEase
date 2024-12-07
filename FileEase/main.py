@@ -27,7 +27,6 @@ class FileEase:
                 stderr=subprocess.DEVNULL
             )
             if output_file_name is not None:
-                ##rename the file to the output file name
                 os.rename(os.path.join(output_folder, os.path.basename(input_file)), os.path.join(output_folder, output_file_name))
             return True
         except (FileNotFoundError, Exception):
@@ -39,7 +38,7 @@ class FileEase:
             full_path: str = os.path.join(path, "soffice.exe")
             if os.path.isfile(full_path):
                 return full_path
-        return None
+        return ""
 
     @staticmethod
     def image_to_pdf(input_path: list[str], output_path: str, output_pdf_name: str) -> bool:
@@ -59,5 +58,4 @@ class FileEase:
 
     def ppt_to_pdf(self, input_file: str, output_folder: str) -> bool:
         return self.__convert_to_pdf(input_file, output_folder)
-
-
+ 
