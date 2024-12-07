@@ -11,17 +11,9 @@ class FileEase:
     def __init__(self):
         self.libreoffice_path = os.getenv("LIBREOFFICE_PATH")
         if self.libreoffice_path is None:
-            self.libreoffice_path = "libreoffice"
+            self.libreoffice_path: str = "libreoffice"
         if sys.platform == "win32":
-            self.libreoffice_path = self.__get_libreoffice_path()
-
-    @staticmethod
-    def __get_libreoffice_path() -> str | None:
-        for path in os.getenv("PATH").split(os.pathsep):
-            full_path = os.path.join(path, "soffice.exe")
-            if os.path.isfile(full_path):
-                return full_path
-        return None
+            self.libreoffice_path: str = self.__get_libreoffice_path()
 
     def __convert_to_pdf(self, input_file: str, output_folder: str, output_file_name: str = None) -> bool:
         if not os.path.isfile(input_file):
@@ -41,11 +33,13 @@ class FileEase:
         except (FileNotFoundError, Exception):
             return False
 
-    def doc_to_pdf(self, input_file: str, output_folder: str) -> bool:
-        return self.__convert_to_pdf(input_file, output_folder)
-
-    def ppt_to_pdf(self, input_file: str, output_folder: str) -> bool:
-        return self.__convert_to_pdf(input_file, output_folder)
+    @staticmethod
+    def __get_libreoffice_path() -> str | None:
+        for path in os.getenv("PATH").split(os.pathsep):
+            full_path: str = os.path.join(path, "soffice.exe")
+            if os.path.isfile(full_path):
+                return full_path
+        return None
 
     @staticmethod
     def image_to_pdf(input_path: list[str], output_path: str, output_pdf_name: str) -> bool:
@@ -59,4 +53,11 @@ class FileEase:
             images.append(img)
         images[0].save(output_path + os.path.basename(output_pdf_name) + ".pdf", save_all=True, append_images=images[1:], resolution=100.0, quality=95)
         return True
+
+    def doc_to_pdf(self, input_file: str, output_folder: str) -> bool:
+        return self.__convert_to_pdf(input_file, output_folder)
+
+    def ppt_to_pdf(self, input_file: str, output_folder: str) -> bool:
+        return self.__convert_to_pdf(input_file, output_folder)
+
 
