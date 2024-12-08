@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "fileease"
 version = "0.0.4"
 description = "A simple file management tool"
-readme = "README.md" 
+readme = "README.md"
 license = {text = "MIT"} 
 authors = [{name = "METECH", email = "metech.mc@gmail.com"}]
 dependencies = [
