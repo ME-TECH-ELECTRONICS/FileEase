@@ -3,8 +3,8 @@ requires = ["setuptools>=75.6.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "file_ease"
-version = "0.0.1"
+name = "fileease"
+version = "0.0.4"
 description = "A simple file management tool"
 readme = "README.md" 
 license = {text = "MIT"} 
